@@ -18,13 +18,8 @@ export const ReferralTable: React.FC<ReferralTableProps> = ({ referrals, isLoadi
 
   if (isLoading) {
     return (
-      <Card className="animate-pulse motion-reduce:animate-none">
-        <div
-          role="status"
-          aria-busy="true"
-          aria-label="Loading referrals"
-          className="h-96 bg-trellis-vine/20 rounded"
-        />
+      <Card className="animate-pulse">
+        <div className="h-96 bg-trellis-vine/20 rounded" />
       </Card>
     );
   }
@@ -32,7 +27,7 @@ export const ReferralTable: React.FC<ReferralTableProps> = ({ referrals, isLoadi
   if (!referrals || referrals.length === 0) {
     return (
       <Card className="text-center py-12">
-        <p role="status" className="text-trellis-vine/60">No referrals yet. Start sharing your code!</p>
+        <p className="text-trellis-vine/60">No referrals yet. Start sharing your code!</p>
       </Card>
     );
   }
@@ -89,10 +84,9 @@ export const ReferralTable: React.FC<ReferralTableProps> = ({ referrals, isLoadi
 
         {/* Controls */}
         <div className="flex flex-col sm:flex-row gap-4 mb-6">
-          <div className="flex gap-2 items-center">
-            <label htmlFor="referral-sort-by" className="text-sm text-trellis-vine/60">Sort by:</label>
+          <div className="flex gap-2">
+            <label className="text-sm text-trellis-vine/60">Sort by:</label>
             <select
-              id="referral-sort-by"
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value as any)}
               className="bg-trellis-ground/50 border border-trellis-vine/30 rounded px-3 py-1 text-sm text-white focus:outline-none focus:border-trellis-vine/60"
@@ -103,10 +97,9 @@ export const ReferralTable: React.FC<ReferralTableProps> = ({ referrals, isLoadi
             </select>
           </div>
 
-          <div className="flex gap-2 items-center">
-            <label htmlFor="referral-filter-status" className="text-sm text-trellis-vine/60">Filter:</label>
+          <div className="flex gap-2">
+            <label className="text-sm text-trellis-vine/60">Filter:</label>
             <select
-              id="referral-filter-status"
               value={filterStatus}
               onChange={(e) => setFilterStatus(e.target.value as any)}
               className="bg-trellis-ground/50 border border-trellis-vine/30 rounded px-3 py-1 text-sm text-white focus:outline-none focus:border-trellis-vine/60"
@@ -121,39 +114,21 @@ export const ReferralTable: React.FC<ReferralTableProps> = ({ referrals, isLoadi
 
         {/* Table */}
         <div className="overflow-x-auto">
-          <table aria-label="Referrals" className="w-full text-sm">
+          <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-trellis-vine/20">
-                <th scope="col" className="text-start py-3 px-4 text-trellis-vine/60 font-semibold">Code</th>
-                <th scope="col" className="text-start py-3 px-4 text-trellis-vine/60 font-semibold">User</th>
-                <th
-                  scope="col"
-                  aria-sort={sortBy === 'status' ? 'ascending' : 'none'}
-                  className="text-start py-3 px-4 text-trellis-vine/60 font-semibold"
-                >
-                  Status
-                </th>
-                <th
-                  scope="col"
-                  aria-sort={sortBy === 'commission' ? 'descending' : 'none'}
-                  className="text-end py-3 px-4 text-trellis-vine/60 font-semibold"
-                >
-                  Commission
-                </th>
-                <th
-                  scope="col"
-                  aria-sort={sortBy === 'date' ? 'descending' : 'none'}
-                  className="text-start py-3 px-4 text-trellis-vine/60 font-semibold"
-                >
-                  Date
-                </th>
+                <th className="text-start py-3 px-4 text-trellis-vine/60 font-semibold">Code</th>
+                <th className="text-start py-3 px-4 text-trellis-vine/60 font-semibold">User</th>
+                <th className="text-start py-3 px-4 text-trellis-vine/60 font-semibold">Status</th>
+                <th className="text-end py-3 px-4 text-trellis-vine/60 font-semibold">Commission</th>
+                <th className="text-start py-3 px-4 text-trellis-vine/60 font-semibold">Date</th>
               </tr>
             </thead>
             <tbody>
               {sorted.map((referral) => (
                 <tr
                   key={referral.id}
-                  className="border-b border-trellis-vine/10 hover:bg-trellis-vine/5 transition-colors motion-reduce:transition-none"
+                  className="border-b border-trellis-vine/10 hover:bg-trellis-vine/5 transition-colors"
                 >
                   <td className="py-3 px-4">
                     <code className="bg-trellis-ground/50 px-2 py-1 rounded text-trellis-leaf">
@@ -190,7 +165,7 @@ export const ReferralTable: React.FC<ReferralTableProps> = ({ referrals, isLoadi
         </div>
 
         {sorted.length === 0 && (
-          <div role="status" aria-live="polite" className="text-center py-8 text-trellis-vine/60">
+          <div className="text-center py-8 text-trellis-vine/60">
             No referrals match the selected filter
           </div>
         )}
